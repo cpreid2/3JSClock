@@ -24,35 +24,44 @@
 			var controls = new THREE.OrbitControls( camera );
 
 			// Clock Face
-			var geometry = new THREE.CylinderGeometry( 0.2, 0.2, 0.3, 32 );
-			var material = new THREE.MeshBasicMaterial( {color: 0xffff00} );
+			var geometry = new THREE.CylinderGeometry( 0.1, 0.1, 0.3, 32 );
+			var material = new THREE.MeshBasicMaterial( {color: '#FFFFFF'} );
 			var cylinder = new THREE.Mesh( geometry, material );
 			cylinder.rotation.x = Math.PI/2
+			scene.add( cylinder );
+
+			// Clock Face
+			var geometry = new THREE.CylinderGeometry( 2.5, 2.5, 0.1, 32 );
+			var material = new THREE.MeshBasicMaterial( {color: '#000000'} );
+			var cylinder = new THREE.Mesh( geometry, material );
+			cylinder.rotation.x = Math.PI/2
+			geometry.translate( 0, -0.2, 0 );
 			scene.add( cylinder );
 
 			// Points along clock Face
 			var Ticks = 12
 			for(var i = 0; i < Ticks; i++){
 				var geometry = new THREE.CylinderGeometry( 0.05, 0.05, 0.05, 32 );
-				var material = new THREE.MeshBasicMaterial( {color: '#566573'} );
+				var material = new THREE.MeshBasicMaterial( {color: '#FFFFFF'} );
 				var sphere = new THREE.Mesh( geometry, material );
 				geometry.translate( 2.3, 0, 0 );
 				sphere.rotation.z = Math.PI/2 + (i) * Math.PI/6
+				geometry.translate( 0, 0, -0.15 );
 				scene.add( sphere );
 			};
 
 			// Second Hand
 			var secondHeight = 1.8
-			var geometry = new THREE.BoxGeometry( secondHeight, .05, .05 );
-			var material = new THREE.MeshBasicMaterial( { color: '#802b00' } );
+			var geometry = new THREE.BoxGeometry( secondHeight, .03, .03 );
+			var material = new THREE.MeshBasicMaterial( { color: '#FF0000' } );
 			var secondHand = new THREE.Mesh( geometry, material );
 			geometry.translate( -secondHeight/2, 0, 0 );
 			scene.add( secondHand );
 
 			// Minute Hand
-			var minuteHeight = 1.3
+			var minuteHeight = 1.4
 			var geometry = new THREE.BoxGeometry( minuteHeight, .1, .1 );
-			var material = new THREE.MeshBasicMaterial( { color: '#C0C0C0' } );
+			var material = new THREE.MeshBasicMaterial( { color: '#DCDCDC' } );
 			var minuteHand = new THREE.Mesh( geometry, material );
 			geometry.translate( -minuteHeight/2, 0, 0 );
 			scene.add( minuteHand );
@@ -60,7 +69,7 @@
 			// Hour Hand
 			var hourHeight = 0.9
 			var geometry = new THREE.BoxGeometry( hourHeight, .1, .1 );
-			var material = new THREE.MeshBasicMaterial( { color: '#696969' } );
+			var material = new THREE.MeshBasicMaterial( { color: '#C0C0C0' } );
 			var hourHand = new THREE.Mesh( geometry, material );
 			geometry.translate( -hourHeight/2, 0, 0 );
 			scene.add( hourHand );
