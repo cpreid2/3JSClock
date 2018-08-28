@@ -20,7 +20,7 @@
 			renderer.setSize( window.innerWidth, window.innerHeight );
 			document.body.appendChild( renderer.domElement );
 
-var controls = new THREE.OrbitControls( camera );
+			var controls = new THREE.OrbitControls( camera );
 
 			// Clock Face
 			var geometry = new THREE.CylinderGeometry( 0.2, 0.2, 0.3, 32 );
@@ -32,7 +32,7 @@ var controls = new THREE.OrbitControls( camera );
 			// Points along clock Face
 			var Ticks = 12
 			for(var i = 0; i < Ticks; i++){
-				var geometry = new THREE.CylinderGeometry( 0.075, 0.075, 0.075, 32 );
+				var geometry = new THREE.CylinderGeometry( 0.05, 0.05, 0.05, 32 );
 				var material = new THREE.MeshBasicMaterial( {color: '#566573'} );
 				var sphere = new THREE.Mesh( geometry, material );
 				geometry.translate( 2.5, 0, 0 );
@@ -64,6 +64,8 @@ var controls = new THREE.OrbitControls( camera );
 			geometry.translate( -hourHeight/2, 0, 0 );
 			scene.add( hourHand );
 			controls.update();
+
+			
 			function animate() {
 				requestAnimationFrame( animate );
 				var now = new Date();
