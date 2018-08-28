@@ -21,8 +21,8 @@
 
 			// Second Hand
 			var secondHeight = 2
-			var geometry = new THREE.BoxGeometry( secondHeight, .05, .05 );
-			var material = new THREE.MeshBasicMaterial( { color: '#A9A9A9' } );
+			var geometry = new THREE.BoxGeometry( secondHeight, .075, .075 );
+			var material = new THREE.MeshBasicMaterial( { color: '#802b00' } );
 			var secondHand = new THREE.Mesh( geometry, material );
 			geometry.translate( -secondHeight/2, 0, 0 );
 			scene.add( secondHand );
@@ -37,7 +37,7 @@
 
 			// Hour Hand
 			var hourHeight = 1
-			var geometry = new THREE.BoxGeometry( hourHeight, .05, .05 );
+			var geometry = new THREE.BoxGeometry( hourHeight, .1, .1 );
 			var material = new THREE.MeshBasicMaterial( { color: '#696969' } );
 			var hourHand = new THREE.Mesh( geometry, material );
 			geometry.translate( -hourHeight/2, 0, 0 );
