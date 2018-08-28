@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset=utf-8>
+		<title>Colin's Clock App</title>
+		<style>
+			body { margin: 10; }
+			canvas { width: 100%; height: 100% }
+		</style>
+	</head>
+	<body>
+		<script src="three.js"></script>
+		<script>
+
+			var scene = new THREE.Scene();
+			var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+
+			var renderer = new THREE.WebGLRenderer();
+			renderer.setSize( window.innerWidth, window.innerHeight );
+			document.body.appendChild( renderer.domElement );
+
+			// Second Hand
+			var secondHeight = 3
+			var geometry = new THREE.BoxGeometry( secondHeight, .05, .05 );
+			var material = new THREE.MeshBasicMaterial( { color: '#A9A9A9' } );
+			var secondHand = new THREE.Mesh( geometry, material );
+			geometry.translate( -secondHeight/2, 0, 0 );
+			scene.add( secondHand );
+
+			// Minute Hand
+			var minuteHeight = 2
+			var geometry = new THREE.BoxGeometry( minuteHeight, .1, .1 );
+			var material = new THREE.MeshBasicMaterial( { color: '#696969' } );
+			var minuteHand = new THREE.Mesh( geometry, material );
+			geometry.translate( -minuteHeight/2, 0, 0 );
+			scene.add( minuteHand );
+
+			// Hour Hand
+			var hourHeight = 1
+			var geometry = new THREE.BoxGeometry( hourHeight, .1, .1 );
+			var material = new THREE.MeshBasicMaterial( { color: '#000000' } );
+			var hourHand = new THREE.Mesh( geometry, material );
+			geometry.translate( -hourHeight/2, 0, 0 );
+			scene.add( hourHand );
+
+			function animate() {
+				requestAnimationFrame( animate );
+				var now = new Date();
+				var seconds = now.getSeconds()
+				var minutes = now.getMinutes()
+				var hours = now.getHours()
+
+				secondHand.rotation.z = ((270-(seconds / 60 * 360)) * Math.PI / 180);
+				minuteHand.rotation.z = ((270-(minutes / 60 * 360 + (seconds / 60 * 360/60))) * Math.PI / 180);
+				hourHand.rotation.z = ((270-(hours / 12 * 360 + (minutes / 60 * 360/60))) * Math.PI / 180);
+
+				renderer.render( scene, camera );
+			}
+			animate();
+
+			camera.position.z = 5;
+		</script>
+	</body>
+</html>
