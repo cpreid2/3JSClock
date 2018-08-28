@@ -4,7 +4,7 @@
 		<meta charset=utf-8>
 		<title>Colin's Clock App</title>
 		<style>
-			body { margin: 10; }
+			body { margin: 0; }
 			canvas { width: 100%; height: 100% }
 		</style>
 	</head>
@@ -20,7 +20,7 @@
 			document.body.appendChild( renderer.domElement );
 
 			// Second Hand
-			var secondHeight = 3
+			var secondHeight = 2
 			var geometry = new THREE.BoxGeometry( secondHeight, .05, .05 );
 			var material = new THREE.MeshBasicMaterial( { color: '#A9A9A9' } );
 			var secondHand = new THREE.Mesh( geometry, material );
@@ -28,7 +28,7 @@
 			scene.add( secondHand );
 
 			// Minute Hand
-			var minuteHeight = 2
+			var minuteHeight = 1.5
 			var geometry = new THREE.BoxGeometry( minuteHeight, .1, .1 );
 			var material = new THREE.MeshBasicMaterial( { color: '#696969' } );
 			var minuteHand = new THREE.Mesh( geometry, material );
@@ -38,7 +38,7 @@
 			// Hour Hand
 			var hourHeight = 1
 			var geometry = new THREE.BoxGeometry( hourHeight, .1, .1 );
-			var material = new THREE.MeshBasicMaterial( { color: '#000000' } );
+			var material = new THREE.MeshBasicMaterial( { color: '#696969' } );
 			var hourHand = new THREE.Mesh( geometry, material );
 			geometry.translate( -hourHeight/2, 0, 0 );
 			scene.add( hourHand );
