@@ -19,6 +19,24 @@
 			renderer.setSize( window.innerWidth, window.innerHeight );
 			document.body.appendChild( renderer.domElement );
 
+			// Clock Face
+			var geometry = new THREE.CylinderGeometry( 0.2, 0.2, 1, 32 );
+			var material = new THREE.MeshBasicMaterial( {color: 0xffff00} );
+			var cylinder = new THREE.Mesh( geometry, material );
+			cylinder.rotation.x = Math.PI/2
+			scene.add( cylinder );
+
+			// Points along clock Face
+			var Ticks = 12
+			for(var i = 0; i < Ticks; i++){
+				var geometry = new THREE.CylinderGeometry( 0.075, 0.075, 0.075, 32 );
+				var material = new THREE.MeshBasicMaterial( {color: '#566573'} );
+				var sphere = new THREE.Mesh( geometry, material );
+				geometry.translate( 2.5, 0, 0 );
+				sphere.rotation.z = Math.PI/2 + (i) * Math.PI/6
+				scene.add( sphere );
+			};
+
 			// Second Hand
 			var secondHeight = 2
 			var geometry = new THREE.BoxGeometry( secondHeight, .05, .05 );
@@ -46,6 +64,7 @@
 			function animate() {
 				requestAnimationFrame( animate );
 				var now = new Date();
+
 				var seconds = now.getSeconds()
 				var minutes = now.getMinutes()
 				var hours = now.getHours()
