@@ -10,6 +10,7 @@
 	</head>
 	<body>
 		<script src="three.js"></script>
+		<script src="OrbitControls.js"></script>
 		<script>
 
 			var scene = new THREE.Scene();
@@ -19,8 +20,10 @@
 			renderer.setSize( window.innerWidth, window.innerHeight );
 			document.body.appendChild( renderer.domElement );
 
+var controls = new THREE.OrbitControls( camera );
+
 			// Clock Face
-			var geometry = new THREE.CylinderGeometry( 0.2, 0.2, 1, 32 );
+			var geometry = new THREE.CylinderGeometry( 0.2, 0.2, 0.3, 32 );
 			var material = new THREE.MeshBasicMaterial( {color: 0xffff00} );
 			var cylinder = new THREE.Mesh( geometry, material );
 			cylinder.rotation.x = Math.PI/2
@@ -60,7 +63,7 @@
 			var hourHand = new THREE.Mesh( geometry, material );
 			geometry.translate( -hourHeight/2, 0, 0 );
 			scene.add( hourHand );
-
+			controls.update();
 			function animate() {
 				requestAnimationFrame( animate );
 				var now = new Date();
@@ -72,6 +75,8 @@
 				secondHand.rotation.z = ((270-(seconds / 60 * 360)) * Math.PI / 180);
 				minuteHand.rotation.z = ((270-(minutes / 60 * 360 + (seconds / 60 * 360/60))) * Math.PI / 180);
 				hourHand.rotation.z = ((270-(hours / 12 * 360 + (minutes / 60 * 360/60))) * Math.PI / 180);
+
+				controls.update();
 
 				renderer.render( scene, camera );
 			}
